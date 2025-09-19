@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@client/*": ["apps/client/src/*"],
+      "@server/*": ["apps/server/src/*"],
+      "@scripts/*": ["scripts/*"],
+      "@shared/*": ["packages/shared/src/*"]
+    }
+  }
+}

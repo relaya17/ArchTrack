@@ -1,0 +1,14 @@
+# Global owners
+* @construction-master/team
+
+# Frontend
+apps/client/ @construction-master/frontend-team
+
+# Backend
+apps/server/ @construction-master/backend-team
+
+# Documentation
+docs/ @construction-master/docs-team
+
+# CI/CD
+.github/ @construction-master/devops-team

@@ -1,0 +1,11 @@
+[build]
+  command = "cd apps/client && pnpm build"
+  publish = "apps/client/out"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

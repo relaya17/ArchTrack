@@ -1,0 +1,31 @@
+{
+  "root": true,
+  "extends": ["eslint:recommended"],
+  "rules": {
+    "prefer-const": "off",
+    "no-unused-vars": "off",
+    "semi": "off",
+    "indent": "off",
+    "comma-dangle": "off",
+    "eol-last": "off",
+    "quotes": "off",
+    "no-trailing-spaces": "off",
+    "no-undef": "off",
+    "no-console": "off",
+    "no-useless-escape": "off",
+    "curly": "off",
+    "import/order": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/prefer-const": "off"
+  },
+  "ignorePatterns": [
+    "node_modules/",
+    "dist/",
+    "build/",
+    ".next/",
+    "out/",
+    "apps/**"
+  ]
+}
