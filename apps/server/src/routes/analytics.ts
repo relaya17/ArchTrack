@@ -22,7 +22,7 @@ router.use(authenticateToken)
 // Get dashboard analytics
 router.get('/dashboard',
     requirePermission(PERMISSIONS.ANALYTICS_VIEW),
-    asyncHandler(async (req, res) => {
+    asyncHandler(async (req: express.Request, res: express.Response) => {
         try {
             const analytics = await analyticsService.getDashboardAnalytics(
                 req.user!.id,
@@ -48,7 +48,7 @@ router.get('/dashboard',
 // Get project insights
 router.get('/projects/insights',
     requirePermission(PERMISSIONS.ANALYTICS_VIEW),
-    asyncHandler(async (req, res) => {
+    asyncHandler(async (req: express.Request, res: express.Response) => {
         try {
             const insights = await analyticsService.getProjectInsights(
                 req.user!.id,
@@ -75,7 +75,7 @@ router.get('/projects/insights',
 router.get('/trends',
     requirePermission(PERMISSIONS.ANALYTICS_VIEW),
     validate(analyticsSchemas.getTrends),
-    asyncHandler(async (req, res) => {
+    asyncHandler(async (req: express.Request, res: express.Response) => {
         try {
             const { period = '12m', granularity = 'monthly' } = req.query
 
@@ -103,7 +103,7 @@ router.get('/trends',
 // Get performance metrics
 router.get('/performance',
     requirePermission(PERMISSIONS.ANALYTICS_VIEW),
-    asyncHandler(async (req, res) => {
+    asyncHandler(async (req: express.Request, res: express.Response) => {
         try {
             const metrics = await analyticsService.getOverviewMetrics(
                 req.user!.id,
@@ -129,7 +129,7 @@ router.get('/performance',
 // Get system alerts
 router.get('/alerts',
     requirePermission(PERMISSIONS.ANALYTICS_VIEW),
-    asyncHandler(async (req, res) => {
+    asyncHandler(async (req: express.Request, res: express.Response) => {
         try {
             const alerts = await analyticsService.getSystemAlerts(
                 req.user!.id,
@@ -156,7 +156,7 @@ router.get('/alerts',
 router.post('/export',
     requirePermission(PERMISSIONS.ANALYTICS_EXPORT),
     validate(analyticsSchemas.exportData),
-    asyncHandler(async (req, res) => {
+    asyncHandler(async (req: express.Request, res: express.Response) => {
         try {
             const { format = 'json', filters = {} } = req.body
 
@@ -192,7 +192,7 @@ router.post('/export',
 router.post('/reports/custom',
     requirePermission(PERMISSIONS.ANALYTICS_EXPORT),
     validate(analyticsSchemas.customReport),
-    asyncHandler(async (req, res) => {
+    asyncHandler(async (req: express.Request, res: express.Response) => {
         try {
             const { filters, sections, dateRange } = req.body
 
@@ -222,7 +222,7 @@ router.post('/reports/custom',
 router.get('/projects/:projectId',
     requirePermission(PERMISSIONS.ANALYTICS_VIEW),
     validate(analyticsSchemas.getProjectAnalytics),
-    asyncHandler(async (req, res) => {
+    asyncHandler(async (req: express.Request, res: express.Response) => {
         try {
             const { projectId } = req.params
 
@@ -253,7 +253,7 @@ router.get('/projects/:projectId',
 // Get user activity analytics
 router.get('/users/activity',
     requirePermission(PERMISSIONS.ANALYTICS_VIEW),
-    asyncHandler(async (req, res) => {
+    asyncHandler(async (req: express.Request, res: express.Response) => {
         try {
             // TODO: Implement user activity analytics
             // This would return user activity patterns, login times, etc.
@@ -282,7 +282,7 @@ router.get('/users/activity',
 // Get file usage analytics
 router.get('/files/usage',
     requirePermission(PERMISSIONS.ANALYTICS_VIEW),
-    asyncHandler(async (req, res) => {
+    asyncHandler(async (req: express.Request, res: express.Response) => {
         try {
             const { period = '30d' } = req.query
 
@@ -314,7 +314,7 @@ router.get('/files/usage',
 // Get real-time metrics
 router.get('/realtime',
     requirePermission(PERMISSIONS.ANALYTICS_VIEW),
-    asyncHandler(async (req, res) => {
+    asyncHandler(async (req: express.Request, res: express.Response) => {
         try {
             // TODO: Implement real-time metrics
             // This would return current system status, active users, etc.

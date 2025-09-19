@@ -6,7 +6,7 @@
 import { Request, Response, NextFunction } from 'express'
 import { ZodError } from 'zod'
 import { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken'
-import { ValidationError } from 'mongoose'
+import mongoose from 'mongoose'
 
 // Custom error classes
 export class AppError extends Error {
@@ -24,10 +24,10 @@ export class AppError extends Error {
     }
 }
 
-export class ValidationError extends AppError {
+export class CustomValidationError extends AppError {
     constructor(message: string, field?: string) {
         super(message, 400, 'VALIDATION_ERROR')
-        this.name = 'ValidationError'
+        this.name = 'CustomValidationError'
     }
 }
 

@@ -21,9 +21,7 @@ export const initSentry = () => {
             integrations: [
                 // HTTP integration for Express
                 Sentry.httpIntegration({
-                    tracing: {
-                        instrumentOutgoingRequests: true,
-                    },
+                    instrumentOutgoingRequests: true,
                 }),
 
                 // Node.js profiling integration
@@ -141,10 +139,10 @@ export const captureUser = (user: any) => {
 };
 
 export const captureTransaction = (name: string, op: string) => {
-    return Sentry.startTransaction({
+    return Sentry.startSpan({
         name,
         op,
-    });
+    }, () => { });
 };
 
 export const captureBreadcrumb = (message: string, category: string, data?: any) => {

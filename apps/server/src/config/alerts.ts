@@ -169,7 +169,7 @@ export const registerCommonAlerts = () => {
         condition: () => {
             const cpus = require('os').cpus();
             const cpuUsage = cpus.reduce((acc: number, cpu: any) => {
-                const total = Object.values(cpu.times).reduce((a: number, b: number) => a + b, 0);
+                const total = Object.values(cpu.times).reduce((a: number, b: number) => a + b, 0) as number;
                 const idle = cpu.times.idle;
                 return acc + (1 - idle / total);
             }, 0) / cpus.length * 100;

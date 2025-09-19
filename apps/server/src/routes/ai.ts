@@ -368,7 +368,7 @@ router.get('/chat-history',
         try {
             const { assistantType = 'construction_assistant' } = req.query
 
-            const history = [] // Get conversation history logic would go here
+            const history: any[] = [] // Get conversation history logic would go here
 
             res.json({
                 success: true,

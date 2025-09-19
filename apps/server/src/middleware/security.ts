@@ -82,7 +82,7 @@ export const rateLimiters = {
         windowMs: 15 * 60 * 1000, // 15 minutes
         max: 5, // 5 login attempts per window
         message: 'יותר מדי ניסיונות התחברות, נסה שוב מאוחר יותר',
-        keyGenerator: (req) => req.ip, // Only by IP for auth
+        keyGenerator: (req) => req.ip || 'unknown', // Only by IP for auth
         skipSuccessfulRequests: true
     }),
 
@@ -453,7 +453,7 @@ export const apiVersioning = (req: Request, res: Response, next: NextFunction) =
             })
         }
 
-        req.apiVersion = version
+        req.apiVersion = version as string
     }
 
     next()
