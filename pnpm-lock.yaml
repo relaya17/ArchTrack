@@ -244,8 +244,8 @@ importers:
         specifier: ~13.4.0
         version: 13.4.0(expo@50.0.21)
       expo-status-bar:
-        specifier: ~1.11.1
-        version: 1.11.1
+        specifier: ~3.0.8
+        version: 3.0.8(react-native@0.73.6)(react@18.2.0)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -8992,8 +8992,15 @@ packages:
       expo: 50.0.21(@babel/core@7.28.4)(@react-native/babel-preset@0.81.1)(react-native@0.73.6)(react@18.2.0)
     dev: false
 
-  /expo-status-bar@1.11.1:
-    resolution: {integrity: sha512-ddQEtCOgYHTLlFUe/yH67dDBIoct5VIULthyT3LRJbEwdpzAgueKsX2FYK02ldh440V87PWKCamh7R9evk1rrg==}
+  /expo-status-bar@3.0.8(react-native@0.73.6)(react@18.2.0):
+    resolution: {integrity: sha512-L248XKPhum7tvREoS1VfE0H6dPCaGtoUWzRsUv7hGKdiB4cus33Rc0sxkWkoQ77wE8stlnUlL5lvmT0oqZ3ZBw==}
+    peerDependencies:
+      react: '*'
+      react-native: '*'
+    dependencies:
+      react: 18.2.0
+      react-native: 0.73.6(@babel/core@7.28.4)(@babel/preset-env@7.28.3)(react@18.2.0)
+      react-native-is-edge-to-edge: 1.2.1(react-native@0.73.6)(react@18.2.0)
     dev: false
 
   /expo@50.0.21(@babel/core@7.28.4)(@react-native/babel-preset@0.81.1)(react-native@0.73.6)(react@18.2.0):
@@ -12736,6 +12743,16 @@ packages:
       invariant: 2.2.4
       lodash: 4.17.21
       prop-types: 15.8.1
+      react: 18.2.0
+      react-native: 0.73.6(@babel/core@7.28.4)(@babel/preset-env@7.28.3)(react@18.2.0)
+    dev: false
+
+  /react-native-is-edge-to-edge@1.2.1(react-native@0.73.6)(react@18.2.0):
+    resolution: {integrity: sha512-FLbPWl/MyYQWz+KwqOZsSyj2JmLKglHatd3xLZWskXOpRaio4LfEDEz8E/A6uD8QoTHW6Aobw1jbEwK7KMgR7Q==}
+    peerDependencies:
+      react: '*'
+      react-native: '*'
+    dependencies:
       react: 18.2.0
       react-native: 0.73.6(@babel/core@7.28.4)(@babel/preset-env@7.28.3)(react@18.2.0)
     dev: false
