@@ -226,8 +226,8 @@ importers:
         specifier: ~16.0.9
         version: 16.0.9(expo@50.0.21)
       expo-image-picker:
-        specifier: ~14.7.1
-        version: 14.7.1(expo@50.0.21)
+        specifier: ~17.0.8
+        version: 17.0.8(expo@50.0.21)
       expo-location:
         specifier: ~16.5.5
         version: 16.5.5(expo@50.0.21)
@@ -8887,14 +8887,6 @@ packages:
       react-native: 0.73.6(@babel/core@7.28.4)(@babel/preset-env@7.28.3)(react@18.2.0)
     dev: false
 
-  /expo-image-loader@4.6.0(expo@50.0.21):
-    resolution: {integrity: sha512-RHQTDak7/KyhWUxikn2yNzXL7i2cs16cMp6gEAgkHOjVhoCJQoOJ0Ljrt4cKQ3IowxgCuOrAgSUzGkqs7omj8Q==}
-    peerDependencies:
-      expo: '*'
-    dependencies:
-      expo: 50.0.21(@babel/core@7.28.4)(@react-native/babel-preset@0.81.1)(react-native@0.73.6)(react@18.2.0)
-    dev: false
-
   /expo-image-loader@4.7.0(expo@50.0.21):
     resolution: {integrity: sha512-cx+MxxsAMGl9AiWnQUzrkJMJH4eNOGlu7XkLGnAXSJrRoIiciGaKqzeaD326IyCTV+Z1fXvIliSgNW+DscvD8g==}
     peerDependencies:
@@ -8903,13 +8895,21 @@ packages:
       expo: 50.0.21(@babel/core@7.28.4)(@react-native/babel-preset@0.81.1)(react-native@0.73.6)(react@18.2.0)
     dev: false
 
-  /expo-image-picker@14.7.1(expo@50.0.21):
-    resolution: {integrity: sha512-ILQVOJgI3aEzrDmCFGDPtpAepYkn8mot8G7vfQ51BfFdQbzL6N3Wm1fS/ofdWlAZJl/qT2DwaIh5xYmf3SyGZA==}
+  /expo-image-loader@6.0.0(expo@50.0.21):
+    resolution: {integrity: sha512-nKs/xnOGw6ACb4g26xceBD57FKLFkSwEUTDXEDF3Gtcu3MqF3ZIYd3YM+sSb1/z9AKV1dYT7rMSGVNgsveXLIQ==}
     peerDependencies:
       expo: '*'
     dependencies:
       expo: 50.0.21(@babel/core@7.28.4)(@react-native/babel-preset@0.81.1)(react-native@0.73.6)(react@18.2.0)
-      expo-image-loader: 4.6.0(expo@50.0.21)
+    dev: false
+
+  /expo-image-picker@17.0.8(expo@50.0.21):
+    resolution: {integrity: sha512-489ByhVs2XPoAu9zodivAKLv7hG4S/FOe8hO/C2U6jVxmRjpAKakKNjMml0IwWjf1+c/RYBqm1XxKaZ+vq/fDQ==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      expo: 50.0.21(@babel/core@7.28.4)(@react-native/babel-preset@0.81.1)(react-native@0.73.6)(react@18.2.0)
+      expo-image-loader: 6.0.0(expo@50.0.21)
     dev: false
 
   /expo-keep-awake@12.8.2(expo@50.0.21):

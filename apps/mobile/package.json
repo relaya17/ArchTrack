@@ -30,7 +30,7 @@
     "expo-notifications": "~0.27.6",
     "expo-sqlite": "~13.4.0",
     "expo-file-system": "~16.0.9",
-    "expo-image-picker": "~14.7.1",
+    "expo-image-picker": "~17.0.8",
     "expo-barcode-scanner": "~13.0.1",
     "expo-document-picker": "~11.10.0",
     "expo-print": "~12.8.1",
