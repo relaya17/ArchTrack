@@ -108,7 +108,7 @@ jobs:
         run: pnpm --filter client test:e2e
 
       - name: 📊 Upload E2E test results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-report
@@ -175,7 +175,7 @@ jobs:
         run: pnpm build
 
       - name: 📊 Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
           path: |
@@ -220,7 +220,7 @@ jobs:
           lhci autorun
 
       - name: 📊 Upload Lighthouse results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: lighthouse-results
