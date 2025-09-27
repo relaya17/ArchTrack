@@ -263,6 +263,20 @@ pnpm test:coverage
 
 ## 🚀 פריסה
 
+### Render (מומלץ)
+```bash
+# הכנה לדיפלוי
+pnpm render:build
+
+# דיפלוי אוטומטי
+pnpm render:deploy
+
+# בדיקת בריאות
+pnpm render:health
+```
+
+**מדריך מפורט**: ראה [RENDER_DEPLOYMENT.md](RENDER_DEPLOYMENT.md)
+
 ### Production
 ```bash
 # Build

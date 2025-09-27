@@ -1,0 +1,65 @@
+services:
+  # Backend (Express Server) - Main service
+  - type: web
+    name: archtrack-backend
+    env: node
+    plan: starter
+    buildCommand: |
+      pnpm install && 
+      pnpm --filter server build
+    startCommand: |
+      pnpm --filter server start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        fromDatabase:
+          name: archtrack-mongodb
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: CORS_ORIGIN
+        value: https://archtrack-frontend.onrender.com
+    healthCheckPath: /api/health
+    autoDeploy: true
+    branch: main
+
+  # Frontend (Next.js Client)
+  - type: web
+    name: archtrack-frontend
+    env: node
+    plan: starter
+    buildCommand: |
+      cd apps/client && 
+      pnpm install && 
+      pnpm build
+    startCommand: |
+      cd apps/client && 
+      pnpm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          type: web
+          name: archtrack-backend
+          property: host
+      - key: NEXT_PUBLIC_WS_URL
+        fromService:
+          type: web
+          name: archtrack-backend
+          property: host
+    healthCheckPath: /api/health
+    autoDeploy: true
+    branch: main
+
+databases:
+  # MongoDB Database
+  - name: archtrack-mongodb
+    plan: starter
