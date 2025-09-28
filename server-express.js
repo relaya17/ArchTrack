@@ -13,42 +13,46 @@ app.get("/api/health", (req, res) => {
     status: "OK",
     message: "ArchTrack Server is running",
     timestamp: new Date().toISOString(),
-    database: mongoose.connection.readyState === 1 ? "connected" : "disconnected"
+    database:
+      mongoose.connection.readyState === 1 ? "connected" : "disconnected",
   });
 });
 
 // Catch-all route
 app.get("*", (req, res) => {
-  res.json({ 
-    status: "running", 
+  res.json({
+    status: "running",
     url: req.url,
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 });
 
 // MongoDB Connection
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/archtrack";
+const MONGODB_URI =
+  process.env.MONGODB_URI || "mongodb://localhost:27017/archtrack";
 
 if (MONGODB_URI.includes("<username>")) {
   console.log("Warning: MongoDB URI contains placeholder values");
   // Use local fallback
-  mongoose.connect("mongodb://localhost:27017/archtrack")
+  mongoose
+    .connect("mongodb://localhost:27017/archtrack")
     .then(() => {
       console.log("MongoDB connected (local fallback)");
       startServer();
     })
-    .catch(err => {
+    .catch((err) => {
       console.error("MongoDB connection failed:", err);
       console.log("Starting server without database...");
       startServer();
     });
 } else {
-  mongoose.connect(MONGODB_URI)
+  mongoose
+    .connect(MONGODB_URI)
     .then(() => {
       console.log("MongoDB connected");
       startServer();
     })
-    .catch(err => {
+    .catch((err) => {
       console.error("MongoDB connection failed:", err);
       console.log("Starting server without database...");
       startServer();

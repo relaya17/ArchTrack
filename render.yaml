@@ -3,13 +3,24 @@ services:
     name: archtrack
     runtime: node
     plan: starter
-    buildCommand: npm install
-    startCommand: npm start
+    buildCommand: |
+      # Build backend
+      cd apps/server
+      npm install
+      npm run build
+      # Build frontend
+      cd ../client
+      npm install
+      npm run build
+    startCommand: |
+      # Serve backend + frontend
+      cd apps/server
+      npm start
     envVars:
       - key: NODE_ENV
         value: production
       - key: MONGODB_URI
-        value: mongodb://localhost:27017/archtrack
+        value: mongodb+srv://<username>:<password>@cluster0.mongodb.net/archtrack?retryWrites=true&w=majority
       - key: JWT_SECRET
         generateValue: true
       - key: JWT_EXPIRES_IN
