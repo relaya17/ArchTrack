@@ -2,7 +2,7 @@ services:
   # Main service - serves both frontend and backend
   - type: web
     name: archtrack
-    env: node
+    runtime: node
     plan: starter
     buildCommand: |
       pnpm install && 

@@ -6,7 +6,7 @@
     "outDir": "dist",
     "noEmitOnError": false,
     "skipLibCheck": true,
-    "strict": false, // Temporarily disabled for deployment
+    "strict": false,
     "noImplicitAny": false,
     "strictNullChecks": false,
     "strictFunctionTypes": false,
