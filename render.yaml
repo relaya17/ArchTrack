@@ -5,9 +5,9 @@ services:
     runtime: node
     plan: starter
     buildCommand: |
-      node --version && npm install express
+      cp package-simple.json package.json && npm install
     startCommand: |
-      node simple-server.js
+      npm start
     envVars:
       - key: NODE_ENV
         value: production
