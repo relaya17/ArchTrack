@@ -1,12 +1,13 @@
 {
-  "name": "archtrack",
-  "version": "1.0.0",
-  "description": "ArchTrack Server",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "engines": {
-    "node": ">=14.0.0"
-  }
+    "name": "archtrack",
+    "version": "1.0.0",
+    "description": "ArchTrack Server",
+    "main": "server.js",
+    "scripts": {
+        "build": "echo 'No build needed'",
+        "start": "node server.js"
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    }
 }
