@@ -1,13 +1,9 @@
 {
-  "extends": ["eslint:recommended"],
+  "extends": ["../../.eslintrc.json"],
   "rules": {
-    "prefer-const": "error",
-    "no-var": "error",
-    "no-unused-vars": "warn"
-  },
-  "env": {
-    "node": true,
-    "es2022": true
-  },
-  "ignorePatterns": ["dist/", "node_modules/", "*.js"]
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/prefer-optional-chain": "off",
+    "@typescript-eslint/ban-ts-comment": "warn",
+    "@typescript-eslint/no-non-null-assertion": "off"
+  }
 }

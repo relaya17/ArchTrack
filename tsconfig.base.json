@@ -8,7 +8,11 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
+    "noEmit": true,
     "baseUrl": ".",
+    "rootDir": ".",
+    "outDir": "dist",
+    "lib": ["ES2020", "DOM"],
     "paths": {
       "@client/*": ["apps/client/src/*"],
       "@server/*": ["apps/server/src/*"],

@@ -15,9 +15,7 @@ services:
       - key: PORT
         value: 10000
       - key: MONGODB_URI
-        fromDatabase:
-          name: archtrack-mongodb
-          property: connectionString
+        value: mongodb+srv://demo:demo@cluster0.mongodb.net/archtrack?retryWrites=true&w=majority
       - key: JWT_SECRET
         generateValue: true
       - key: JWT_EXPIRES_IN
@@ -58,8 +56,4 @@ services:
     healthCheckPath: /api/health
     autoDeploy: true
     branch: main
-
-databases:
-  # MongoDB Database
-  - name: archtrack-mongodb
-    plan: starter
+# Using external MongoDB Atlas - no database needed
