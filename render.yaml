@@ -4,7 +4,7 @@ services:
     runtime: node
     plan: starter
       buildCommand: |
-        npm install
+        echo "No build needed - using Node.js built-in modules"
       startCommand: |
         npm start
     envVars:

@@ -7,7 +7,7 @@
         "dev": "concurrently \"pnpm --filter client dev\" \"pnpm --filter server dev\"",
         "dev:mobile": "pnpm --filter mobile start",
         "build": "pnpm -r run build",
-        "start": "node simple-server.js",
+        "start": "node server.js",
         "start:client": "pnpm --filter client start",
         "start:server": "pnpm --filter server start",
         "start:all": "concurrently \"pnpm --filter server start\" \"pnpm --filter client start\"",
@@ -38,9 +38,6 @@
         "render:build": "pnpm build",
         "render:start": "pnpm start:server",
         "render:health": "curl -f http://localhost:10000/api/health"
-    },
-    "dependencies": {
-        "express": "^4.18.2"
     },
     "devDependencies": {
         "@types/node": "20",
