@@ -1,12 +1,12 @@
-const express = require("express");
-const app = express();
-const PORT = process.env.PORT || 10000;
+var express = require("express");
+var app = express();
+var PORT = process.env.PORT || 10000;
 
 // Basic middleware
 app.use(express.json());
 
 // Health check endpoint
-app.get("/api/health", (req, res) => {
+app.get("/api/health", function (_req, res) {
   res.json({
     status: "OK",
     message: "ArchTrack Server is running",
@@ -16,7 +16,7 @@ app.get("/api/health", (req, res) => {
 });
 
 // Root endpoint
-app.get("/", (req, res) => {
+app.get("/", function (_req, res) {
   res.json({
     message: "ArchTrack API Server",
     status: "running",
@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 });
 
 // Start server
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`🚀 ArchTrack Server running on port ${PORT}`);
-  console.log(`📊 Health Check: http://localhost:${PORT}/api/health`);
+app.listen(PORT, "0.0.0.0", function () {
+  console.log("ArchTrack Server running on port " + PORT);
+  console.log("Health Check: http://localhost:" + PORT + "/api/health");
 });
