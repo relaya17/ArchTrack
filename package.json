@@ -4,7 +4,8 @@
   "description": "ArchTrack Server - Full Stack Application",
   "main": "dist/server.js",
   "scripts": {
-    "build": "cd apps/server && npm install && npm run build && cd ../client && npm install && npm run build",
+    "postinstall": "cd apps/server && npm install && cd ../client && npm install",
+    "build": "cd apps/server && npm run build && cd ../client && npm run build",
     "start": "cd apps/server && npm run start",
     "dev": "cd apps/server && npm run dev",
     "dev:client": "cd apps/client && npm run dev",

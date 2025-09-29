@@ -4,16 +4,9 @@ services:
     runtime: node
     plan: starter
     buildCommand: |
-      # Build backend
-      cd apps/server
-      npm install --production=false
-      npm run build
-      # Build frontend
-      cd ../client
-      npm install --production=false
+      npm install
       npm run build
     startCommand: |
-      # Serve backend + frontend
       cd apps/server
       npm run start
     envVars:
