@@ -19,14 +19,22 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: PORT
+        value: 10000
       - key: MONGODB_URI
-        value: mongodb+srv://<username>:<password>@cluster0.mongodb.net/archtrack?retryWrites=true&w=majority
+        value: mongodb+srv://arlet:0528747305mm@cluster0.ftxqb99.mongodb.net/payments_db?retryWrites=true&w=majority&appName=Cluster0
+      - key: MONGO_URI
+        value: mongodb+srv://arlet:0528747305mm@cluster0.ftxqb99.mongodb.net/payments_db?retryWrites=true&w=majority&appName=Cluster0
+      - key: MONGO_DB_NAME
+        value: payments_db
       - key: JWT_SECRET
-        generateValue: true
+        value: super-secure-production-jwt-secret-key-2024-payments-app
       - key: JWT_EXPIRES_IN
-        value: 7d
+        value: 24h
+      - key: CLIENT_URL
+        value: https://my-monorepo-1pzh.onrender.com
       - key: CORS_ORIGIN
-        value: "*"
+        value: https://my-monorepo-1pzh.onrender.com
     healthCheckPath: /api/health
     autoDeploy: true
     branch: main
