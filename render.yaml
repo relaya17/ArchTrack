@@ -4,11 +4,12 @@ services:
     runtime: node
     plan: starter
     buildCommand: |
-      npm install
-      npm run build
+      npm install --prefix apps/server
+      npm install --prefix apps/client
+      npm run build --prefix apps/server
+      npm run build --prefix apps/client
     startCommand: |
-      cd apps/server
-      npm run start
+      npm run start --prefix apps/server
     envVars:
       - key: NODE_ENV
         value: production
