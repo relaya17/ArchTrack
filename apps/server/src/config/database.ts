@@ -39,7 +39,8 @@ export async function connectDatabase(): Promise<void> {
 
     } catch (error) {
         console.error('❌ שגיאה בחיבור למסד הנתונים MongoDB:', error)
-        throw error
+        console.log('⚠️  השרת ימשיך לרוץ בלי מסד נתונים')
+        // Don't throw error - let server continue without database
     }
 }
 

@@ -6,16 +6,16 @@ services:
     buildCommand: |
       # Build backend
       cd apps/server
-      npm install
+      npm install --production=false
       npm run build
       # Build frontend
       cd ../client
-      npm install
+      npm install --production=false
       npm run build
     startCommand: |
       # Serve backend + frontend
       cd apps/server
-      npm start
+      npm run start
     envVars:
       - key: NODE_ENV
         value: production

@@ -4,10 +4,14 @@
   "description": "ArchTrack Server - Full Stack Application",
   "main": "dist/server.js",
   "scripts": {
-    "build": "tsc && echo 'TypeScript compiled successfully'",
-    "start": "node dist/server.js",
-    "dev": "ts-node src/server.ts",
-    "build:full": "npm run build && cd apps/client && npm install && npm run build"
+    "build": "cd apps/server && npm install && npm run build && cd ../client && npm install && npm run build",
+    "start": "cd apps/server && npm run start",
+    "dev": "cd apps/server && npm run dev",
+    "dev:client": "cd apps/client && npm run dev",
+    "dev:server": "cd apps/server && npm run dev",
+    "install:all": "cd apps/server && npm install && cd ../client && npm install",
+    "build:server": "cd apps/server && npm run build",
+    "build:client": "cd apps/client && npm run build"
   },
   "dependencies": {
     "express": "^4.18.2",

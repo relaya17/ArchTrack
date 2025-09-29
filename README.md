@@ -16,12 +16,14 @@
 ## 🔥 פיצ'רים פורצי דרך
 
 ### 1. ניהול פרויקטים
+
 - יצירה וניהול פרויקטים מרובים
 - חלוקה לשלבים: תכנון → ביצוע → מסירה
 - AI Scheduler – יצירת לוחות זמנים אוטומטיים
 - Budget Optimizer – חישוב עלויות אוטומטי והצעות לחסכון
 
 ### 2. Sheets חכמים (Excel 2.0)
+
 - Grid דינמי עם נוסחאות צבעוניות ותנאים מותאמים
 - Cell AI Helper – הצעות אוטומטיות לנוסחאות ותיקונים
 - Import / Export XLSX, CSV, PDF
@@ -29,45 +31,53 @@
 - History + Undo/Redo לכל תא + Compare גרסאות
 
 ### 3. BOQ / Materials / Inventory
+
 - חישוב עלויות חומרי גלם אוטומטי
 - Stock tracking – מעקב מלאי בזמן אמת
 - התראות על חוסרים או עודפים
 - קישור ל-Supplier APIs להזמנות אוטומטיות
 
 ### 4. 3D / BIM Integration
+
 - צפה בכל הדגמים של Revit / AutoCAD / IFC ישירות בתוך האפליקציה
 - התאמת חלקי פרויקט ל-Sheets ול-BOQ
 - Augmented Reality (AR) – להצגת פרויקט באתר באמצעות טאבלט/מובייל
 
 ### 5. Collaboration & Chat חכם
+
 - Chat קבוצתי/פרטי בזמן אמת
 - תגובות/הערות על תאים, גרפים או שרטוטים
 - התראות אוטומטיות על שינויים קריטיים
 - AI Assistant שמסכם שיחות ומפיק To-Do אוטומטי
 
 ### 6. ניהול משתמשים והרשאות
+
 - Roles: Viewer / Editor / Project Manager / Admin
 - SSO / OAuth / Active Directory / Google Login
 - Audit log מלא + GDPR/ISO 27001 compliant
 
 ### 7. Dashboard & Analytics
+
 - KPI מותאמים אישית: תקציב, עלויות, אבני דרך, אחוזי התקדמות
 - Predictive Analytics – ניבוי חריגות עלויות ועיכובים
 - Export Reports אוטומטי ל-PDF/Excel/PowerPoint
 - Visual graphs / Gantt / Kanban / Calendar
 
 ### 8. AI & Automation
+
 - ChatGPT Integration: הסבר שינויים, המלצות אוטומטיות
 - Cost Optimizer: חישוב אופטימלי של חומרים, צוות ומשאבים
 - Risk Predictor: זיהוי סיכונים בפרויקט על בסיס נתונים היסטוריים
 - Automated Compliance Checks (Building codes, Safety regulations)
 
 ### 9. Mobile & AR
+
 - רספונסיבי לכל המכשירים
 - AR + AR.js: הצגת תוכניות ותלת-ממד באתר הפרויקט
 - Push Notifications: התראות קריטיות על חריגות
 
 ### 10. Integrations & Cloud
+
 - Cloud storage (AWS, GCP) עם Versioning מלא
 - API Integrations: Suppliers, BIM tools, Financial Software
 - Realtime sync בין כל המשתמשים
@@ -75,6 +85,7 @@
 ## 🛠 טכנולוגיה
 
 ### Frontend
+
 - **React 18** + **Next.js 14** + **TypeScript**
 - **TailwindCSS** + **Radix UI** components
 - **Framer Motion** לאנימציות
@@ -83,6 +94,7 @@
 - **Socket.IO** לשיתוף בזמן אמת
 
 ### Backend
+
 - **Node.js** + **Express** / **NestJS**
 - **GraphQL** / **REST** APIs
 - **PostgreSQL** + **Prisma ORM**
@@ -90,11 +102,13 @@
 - **Redis** ל-caching ו-sessions
 
 ### AI & ML
+
 - **OpenAI API** ל-ChatGPT integration
 - **ML models** ל-Predictive Analytics
 - **Computer Vision** לניתוח שרטוטים
 
 ### Cloud & Infrastructure
+
 - **AWS S3** + **CloudFront** לאחסון קבצים
 - **AWS Lambda** לפונקציות serverless
 - **Docker** + **Kubernetes** לפריסה
@@ -103,51 +117,65 @@
 ## 🚀 התקנה והפעלה
 
 ### דרישות מקדימות
-- Node.js 18+
-- pnpm 8+
-- PostgreSQL 14+
 
-### התקנה
+- Node.js 18+
+- npm 9+ (או yarn/pnpm)
+- MongoDB 6+ (אופציונלי - השרת יעבוד גם בלי)
+
+### התקנה מהירה
+
 ```bash
 # Clone הפרויקט
 git clone <repository-url>
-cd construction-excel-pro
+cd ArchTrack
 
-# התקנת dependencies
-pnpm install
+# התקנת כל התלות
+npm run install:all
 
 # הגדרת משתני סביבה
-cp .env.example .env
-# ערוך את .env עם הפרטים שלך
-
-# הפעלת מסד הנתונים
-pnpm db:push
+cp apps/server/env.example apps/server/.env
+cp apps/client/.env.example apps/client/.env
+# ערוך את קבצי .env עם הפרטים שלך
 
 # הפעלת השרת
-pnpm dev
+npm run dev
+```
+
+### הפעלה נפרדת
+
+```bash
+# הפעלת השרת בלבד (פורט 6453)
+npm run dev:server
+
+# הפעלת הקליינט בלבד (פורט 3132)
+npm run dev:client
+
+# בניית הפרויקט לפרודקשן
+npm run build
+
+# הפעלת פרודקשן
+npm start
 ```
 
 ### סקריפטים זמינים
+
 ```bash
 # פיתוח
-pnpm dev          # הפעלת client ו-server במקביל
-pnpm dev:client   # הפעלת client בלבד (פורט 3016)
-pnpm dev:server   # הפעלת server בלבד (פורט 3001)
+npm run dev          # הפעלת השרת הראשי
+npm run dev:client   # הפעלת client בלבד
+npm run dev:server   # הפעלת server בלבד
+
+# התקנה
+npm run install:all  # התקנת dependencies לכל הפרויקטים
 
 # בנייה
-pnpm build        # בניית כל הפרויקט
-pnpm start        # הפעלת production
+npm run build        # בניית כל הפרויקט
+npm run build:server # בניית השרת בלבד
+npm run build:client # בניית הקליינט בלבד
+npm start            # הפעלת production
 
-# מסד נתונים
-pnpm db:generate  # יצירת Prisma client
-pnpm db:push      # עדכון schema
-pnpm db:migrate   # הרצת migrations
-pnpm db:studio    # פתיחת Prisma Studio
-
-# בדיקות ואיכות
-pnpm lint         # בדיקת קוד
-pnpm type-check   # בדיקת TypeScript
-pnpm test         # הרצת בדיקות
+# פיתוח
+npm run dev          # הפעלת שרת פיתוח
 ```
 
 ## 📁 מבנה הפרויקט
@@ -187,6 +215,7 @@ construction-excel-pro/
 ## 🎨 עיצוב ו-UX
 
 ### עקרונות עיצוב
+
 - **מראה טבלאי** דמוי Excel עם נוסחאות ותא-פורמולה
 - **עריכה שורתית/תאית** + מצב מלא (spreadsheet)
 - **שיתוף ושכפול גרסאות** עם control of edits + audit log
@@ -194,6 +223,7 @@ construction-excel-pro/
 - **תצוגה מותאמת** למדדים ענפיים (BOQ, Cost, Schedule)
 
 ### מסכים מרכזיים
+
 1. **Dashboard** – מצב כללי, מעקב עלויות, לוח זמנים
 2. **Sheets Grid** – עריכה מלאה, formula bar, attachments
 3. **BOQ View** – grouped by trade/material, subtotals
@@ -214,6 +244,7 @@ construction-excel-pro/
 ## 📊 API Documentation
 
 ### Endpoints עיקריים
+
 ```typescript
 // Authentication
 POST /api/auth/login
@@ -264,6 +295,7 @@ pnpm test:coverage
 ## 🚀 פריסה
 
 ### Render (מומלץ)
+
 ```bash
 # הכנה לדיפלוי
 pnpm render:build
@@ -278,6 +310,7 @@ pnpm render:health
 **מדריך מפורט**: ראה [RENDER_DEPLOYMENT.md](RENDER_DEPLOYMENT.md)
 
 ### Production
+
 ```bash
 # Build
 pnpm build
@@ -290,6 +323,7 @@ aws ecs update-service --service construction-api
 ```
 
 ### Docker
+
 ```bash
 # Build images
 docker-compose build
@@ -304,17 +338,20 @@ docker-compose -f docker-compose.prod.yml up -d
 ## 📈 Roadmap
 
 ### MVP (שלב 1)
+
 - [x] בסיס auth, projects, basic sheets
 - [x] XLSX import/export, file upload
 - [x] Realtime collaboration, versioning
 - [x] BOQ calculations, templates, PDF export
 
 ### שלב 2
+
 - [ ] Integrations BIM/IFC, AI helper
 - [ ] Schedule sync, mobile app
 - [ ] Advanced analytics, reporting
 
 ### שלב 3
+
 - [ ] Enterprise features: SSO, advanced RBAC
 - [ ] On-premise option, custom integrations
 - [ ] Advanced AI features, automation
