@@ -133,8 +133,10 @@ cd ArchTrack
 npm run install:all
 
 # הגדרת משתני סביבה
-cp apps/server/env.example apps/server/.env
-cp apps/client/.env.example apps/client/.env
+# עבור השרת
+cp apps/server/env.example apps/server/.env.local
+# עבור הקליינט
+cp apps/client/env.example apps/client/.env.local
 # ערוך את קבצי .env עם הפרטים שלך
 
 # הפעלת השרת
@@ -181,9 +183,12 @@ npm run dev          # הפעלת שרת פיתוח
 ## 📁 מבנה הפרויקט
 
 ```
-construction-excel-pro/
+ArchTrack/
 ├── apps/
 │   ├── client/                 # Next.js frontend
+│   │   ├── env.example         # דוגמה למשתני סביבה
+│   │   ├── env.development     # פיתוח
+│   │   ├── env.production      # פרודקשן
 │   │   ├── src/
 │   │   │   ├── app/           # App Router pages
 │   │   │   ├── components/    # React components
@@ -200,17 +205,26 @@ construction-excel-pro/
 │   │   │   └── types/         # TypeScript types
 │   │   └── public/            # Static assets
 │   └── server/                # Express backend
-│       ├── src/
-│       │   ├── routes/        # API routes
-│       │   ├── middleware/    # Express middleware
-│       │   ├── services/      # Business logic
-│       │   ├── models/        # Database models
-│       │   └── utils/         # Utilities
-│       └── prisma/            # Database schema
-├── packages/                  # Shared packages
-├── docs/                     # Documentation
-└── scripts/                  # Build scripts
+│       ├── env.example        # דוגמה למשתני סביבה
+│       ├── env.local          # פיתוח מקומי
+│       ├── env.production     # פרודקשן
+│       ├── mongo-init.js      # סקריפט אתחול MongoDB
+│       └── src/
+│           ├── routes/        # API routes
+│           ├── middleware/    # Express middleware
+│           ├── services/      # Business logic
+│           ├── models/        # Database models
+│           └── config/        # הגדרות מערכת
+├── packages/shared/           # חבילות משותפות
+├── scripts/                   # סקריפטי בנייה ופריסה
+└── docs/                      # תיעוד
 ```
+
+### 📝 משתני סביבה
+
+- **קליינט**: `apps/client/env.*` - משתני סביבה לפרונטאנד
+- **סרבר**: `apps/server/env.*` - משתני סביבה לבקאנד
+- **כל קובץ** מתחיל עם `env.` ולא `.env` כדי להימנע מ-gitignore
 
 ## 🎨 עיצוב ו-UX
 
