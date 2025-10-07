@@ -130,7 +130,8 @@ git clone <repository-url>
 cd ArchTrack
 
 # התקנת כל התלות
-npm run install:all
+npx corepack enable && npx corepack prepare pnpm@latest --activate
+pnpm install:all
 
 # הגדרת משתני סביבה
 # עבור השרת
@@ -140,44 +141,44 @@ cp apps/client/env.example apps/client/.env.local
 # ערוך את קבצי .env עם הפרטים שלך
 
 # הפעלת השרת
-npm run dev
+pnpm dev
 ```
 
 ### הפעלה נפרדת
 
 ```bash
 # הפעלת השרת בלבד (פורט 6453)
-npm run dev:server
+pnpm dev:server
 
 # הפעלת הקליינט בלבד (פורט 3132)
-npm run dev:client
+pnpm dev:client
 
 # בניית הפרויקט לפרודקשן
-npm run build
+pnpm build
 
 # הפעלת פרודקשן
-npm start
+pnpm start
 ```
 
 ### סקריפטים זמינים
 
 ```bash
 # פיתוח
-npm run dev          # הפעלת השרת הראשי
-npm run dev:client   # הפעלת client בלבד
-npm run dev:server   # הפעלת server בלבד
+pnpm dev             # הפעלת השרת הראשי
+pnpm dev:client      # הפעלת client בלבד
+pnpm dev:server      # הפעלת server בלבד
 
 # התקנה
-npm run install:all  # התקנת dependencies לכל הפרויקטים
+pnpm install:all     # התקנת dependencies לכל הפרויקטים
 
 # בנייה
-npm run build        # בניית כל הפרויקט
-npm run build:server # בניית השרת בלבד
-npm run build:client # בניית הקליינט בלבד
-npm start            # הפעלת production
+pnpm build           # בניית כל הפרויקט
+pnpm build:server    # בניית השרת בלבד
+pnpm build:client    # בניית הקליינט בלבד
+pnpm start           # הפעלת production
 
 # פיתוח
-npm run dev          # הפעלת שרת פיתוח
+pnpm dev             # הפעלת שרת פיתוח
 ```
 
 ## 📁 מבנה הפרויקט

@@ -15,7 +15,6 @@ export const metadata: Metadata = {
   description: 'מערכת מקצועית לניהול פרויקטי בנייה, BOQ, תקציבים ולוחות זמנים',
   keywords: ['בנייה', 'פרויקטים', 'ניהול', 'אדריכלות', 'הנדסה'],
   authors: [{ name: 'ProBuilder Team' }],
-  viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
   openGraph: {
     title: 'ProBuilder - מערכת גיליונות חכמה לבנייה',
@@ -23,6 +22,11 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'he_IL',
   },
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 }
 
 export default function RootLayout({
