@@ -8,7 +8,6 @@ services:
       corepack prepare pnpm@latest --activate
       pnpm install --no-frozen-lockfile --prefix apps/server
       pnpm install --no-frozen-lockfile --prefix apps/client
-      pnpm run build --prefix apps/server
       pnpm run build --prefix apps/client
     startCommand: |
       pnpm run start --prefix apps/server
