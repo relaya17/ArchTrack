@@ -73,7 +73,7 @@ if (process.env.NODE_ENV !== 'production') {
 // יצירת אפליקציית Express
 const app = express()
 const server = createServer(app)
-const PORT = process.env.PORT || 6453
+const PORT = process.env.PORT || 3000
 
 // Initialize Socket.IO
 let socketService: SocketService
