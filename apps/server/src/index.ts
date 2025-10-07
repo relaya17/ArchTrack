@@ -6,6 +6,11 @@
 // Optimize memory usage for Render
 process.env.UV_THREADPOOL_SIZE = '2'
 process.env.NODE_OPTIONS = '--max-old-space-size=400'
+process.env.NODE_ENV = 'production'
+
+// Disable unnecessary features for production
+process.env.DISABLE_SENTRY = 'true'
+process.env.DISABLE_METRICS = 'true'
 
 import express from 'express'
 import cors from 'cors'
@@ -60,8 +65,10 @@ import enterpriseRoutes from './routes/enterprise'
 // טעינת משתני סביבה
 dotenv.config()
 
-// Initialize Sentry first
-initSentry()
+// Initialize Sentry first (only in development)
+if (process.env.NODE_ENV !== 'production') {
+    initSentry()
+}
 
 // יצירת אפליקציית Express
 const app = express()
@@ -155,14 +162,20 @@ app.use('/api/monitoring', rateLimiters.general, monitoringRoutes)
 app.use('/api/health', healthRoutes)
 app.use('/api/offline', offlineRoutes)
 app.use('/api/push-notifications', pushNotificationRoutes)
-app.use('/api/metrics', realTimeMetricsRoutes)
-app.use('/api/reports', customReportsRoutes)
-app.use('/api/logs', logsRoutes)
-app.use('/api/auth/advanced', advancedAuthRoutes)
-app.use('/api/bim', bimRoutes)
-app.use('/api/analytics/advanced', advancedAnalyticsRoutes)
-app.use('/api/reports/advanced', advancedReportingRoutes)
-app.use('/api/enterprise', enterpriseRoutes)
+// Only enable metrics in development
+if (process.env.NODE_ENV !== 'production') {
+    app.use('/api/metrics', realTimeMetricsRoutes)
+}
+// Only enable advanced routes in development (save memory in production)
+if (process.env.NODE_ENV !== 'production') {
+    app.use('/api/reports', customReportsRoutes)
+    app.use('/api/logs', logsRoutes)
+    app.use('/api/auth/advanced', advancedAuthRoutes)
+    app.use('/api/bim', bimRoutes)
+    app.use('/api/analytics/advanced', advancedAnalyticsRoutes)
+    app.use('/api/reports/advanced', advancedReportingRoutes)
+    app.use('/api/enterprise', enterpriseRoutes)
+}
 
 // 404 handler (must be before error handler)
 app.use(notFoundHandler)
