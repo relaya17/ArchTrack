@@ -4,12 +4,14 @@ services:
     runtime: node
     plan: starter
     buildCommand: |
-      npm install --prefix apps/server
-      npm install --prefix apps/client
-      npm run build --prefix apps/server
-      npm run build --prefix apps/client
+      corepack enable
+      corepack prepare pnpm@latest --activate
+      pnpm install --prefix apps/server
+      pnpm install --prefix apps/client
+      pnpm run build --prefix apps/server
+      pnpm run build --prefix apps/client
     startCommand: |
-      npm run start --prefix apps/server
+      pnpm run start --prefix apps/server
     envVars:
       - key: NODE_ENV
         value: production
