@@ -1,5 +1,5 @@
 [build]
-  command = "npm ci --prefix apps/client && npm run build --prefix apps/client"
+  command = "pnpm install --prefix apps/client && pnpm run build --prefix apps/client"
   publish = "apps/client/out"
 
 [build.environment]
