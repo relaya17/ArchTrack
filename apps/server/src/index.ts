@@ -12,6 +12,14 @@ process.env.NODE_ENV = 'production'
 process.env.DISABLE_SENTRY = 'true'
 process.env.DISABLE_METRICS = 'true'
 
+// Disable source maps and debugging in production
+process.env.NODE_OPTIONS = '--max-old-space-size=400 --no-warnings'
+
+// Set minimal garbage collection
+if (process.env.NODE_ENV === 'production') {
+    process.env.NODE_OPTIONS += ' --optimize-for-size'
+}
+
 import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
@@ -212,36 +220,53 @@ async function startServer() {
 
         // הפעלת השרת
         server.listen(PORT, () => {
-            logger.info(`🚀 שרת פועל על פורט ${PORT}`)
-            logger.info(`🌍 סביבה: ${process.env.NODE_ENV || 'development'}`)
-            logger.info(`📊 Health Check: http://localhost:${PORT}/api/health`)
-            logger.info(`📊 Metrics: http://localhost:${PORT}/api/health/metrics`)
-            logger.info(`🔐 Auth API: http://localhost:${PORT}/api/auth`)
-            logger.info(`📁 Projects API: http://localhost:${PORT}/api/projects`)
-            logger.info(`📊 Sheets API: http://localhost:${PORT}/api/sheets`)
-            logger.info(`📁 Files API: http://localhost:${PORT}/api/files`)
-            logger.info(`🤖 AI API: http://localhost:${PORT}/api/ai`)
-            logger.info(`📊 Analytics API: http://localhost:${PORT}/api/analytics`)
-            logger.info(`🔔 Notifications API: http://localhost:${PORT}/api/notifications`)
-            logger.info(`💾 Backup API: http://localhost:${PORT}/api/backup`)
-            logger.info(`⚡ Performance API: http://localhost:${PORT}/api/performance`)
-            logger.info(`📊 Monitoring API: http://localhost:${PORT}/api/monitoring`)
-            logger.info(`🔌 WebSocket: ws://localhost:${PORT}`)
+            if (process.env.NODE_ENV === 'production') {
+                console.log(`🚀 Server running on port ${PORT}`)
+                console.log(`🌍 Environment: ${process.env.NODE_ENV}`)
+            } else {
+                logger.info(`🚀 שרת פועל על פורט ${PORT}`)
+                logger.info(`🌍 סביבה: ${process.env.NODE_ENV || 'development'}`)
+                logger.info(`📊 Health Check: http://localhost:${PORT}/api/health`)
+                logger.info(`📊 Metrics: http://localhost:${PORT}/api/health/metrics`)
+                logger.info(`🔐 Auth API: http://localhost:${PORT}/api/auth`)
+                logger.info(`📁 Projects API: http://localhost:${PORT}/api/projects`)
+                logger.info(`📊 Sheets API: http://localhost:${PORT}/api/sheets`)
+                logger.info(`📁 Files API: http://localhost:${PORT}/api/files`)
+                logger.info(`🤖 AI API: http://localhost:${PORT}/api/ai`)
+                logger.info(`📊 Analytics API: http://localhost:${PORT}/api/analytics`)
+                logger.info(`🔔 Notifications API: http://localhost:${PORT}/api/notifications`)
+                logger.info(`💾 Backup API: http://localhost:${PORT}/api/backup`)
+                logger.info(`⚡ Performance API: http://localhost:${PORT}/api/performance`)
+                logger.info(`📊 Monitoring API: http://localhost:${PORT}/api/monitoring`)
+                logger.info(`🔌 WebSocket: ws://localhost:${PORT}`)
+            }
         })
     } catch (error) {
-        logger.error('❌ שגיאה בהפעלת השרת:', error)
+        if (process.env.NODE_ENV === 'production') {
+            console.error('❌ Server startup error:', error)
+        } else {
+            logger.error('❌ שגיאה בהפעלת השרת:', error)
+        }
         process.exit(1)
     }
 }
 
 // טיפול בסגירת האפליקציה
 process.on('SIGINT', () => {
-    logger.info('\n🛑 מקבל SIGINT, סוגר את השרת...')
+    if (process.env.NODE_ENV === 'production') {
+        console.log('\n🛑 Received SIGINT, shutting down server...')
+    } else {
+        logger.info('\n🛑 מקבל SIGINT, סוגר את השרת...')
+    }
     process.exit(0)
 })
 
 process.on('SIGTERM', () => {
-    logger.info('\n🛑 מקבל SIGTERM, סוגר את השרת...')
+    if (process.env.NODE_ENV === 'production') {
+        console.log('\n🛑 Received SIGTERM, shutting down server...')
+    } else {
+        logger.info('\n🛑 מקבל SIGTERM, סוגר את השרת...')
+    }
     process.exit(0)
 })
 
