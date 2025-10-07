@@ -3,6 +3,10 @@
  * Construction Master App - Express Server
  */
 
+// Optimize memory usage for Render
+process.env.UV_THREADPOOL_SIZE = '2'
+process.env.NODE_OPTIONS = '--max-old-space-size=400'
+
 import express from 'express'
 import cors from 'cors'
 import helmet from 'helmet'
