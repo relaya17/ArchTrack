@@ -9,8 +9,8 @@ services:
       pnpm install --no-frozen-lockfile --prefix apps/server
       pnpm install --no-frozen-lockfile --prefix apps/client
       pnpm run build --prefix apps/client
-        startCommand: |
-          cd apps/server && pnpm run start
+    startCommand: |
+      cd apps/server && pnpm run start
     envVars:
       - key: NODE_ENV
         value: production
