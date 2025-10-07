@@ -394,7 +394,7 @@ class AnalyticsService {
                 progress,
                 budget: project.budget || 0,
                 spent: await this.getActualSpendingForProject(project._id.toString()),
-                variance: await this.getBudgetVarianceForProject(project._id.toString(), project.budget || 0)
+                variance: await this.getBudgetVarianceForProject(project._id.toString(), project.budget || 0),
                 timeline: {
                     planned,
                     actual,

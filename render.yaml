@@ -6,8 +6,8 @@ services:
     buildCommand: |
       corepack enable
       corepack prepare pnpm@latest --activate
-      pnpm install --prefix apps/server
-      pnpm install --prefix apps/client
+      pnpm install --no-frozen-lockfile --prefix apps/server
+      pnpm install --no-frozen-lockfile --prefix apps/client
       pnpm run build --prefix apps/server
       pnpm run build --prefix apps/client
     startCommand: |
@@ -17,21 +17,14 @@ services:
         value: production
       - key: PORT
         value: 10000
-      # Set the following in Render Dashboard → Environment
+      # The following should be set in Render Dashboard (no values committed):
       - key: MONGODB_URI
-        sync: false
-      - key: MONGO_URI
-        sync: false
       - key: MONGO_DB_NAME
-        sync: false
       - key: JWT_SECRET
-        sync: false
       - key: JWT_EXPIRES_IN
         value: 24h
       - key: CLIENT_URL
-        sync: false
       - key: CORS_ORIGIN
-        sync: false
     healthCheckPath: /api/health
     autoDeploy: true
     branch: main

@@ -12,7 +12,11 @@ import {
   Settings,
   Table,
   Calendar,
-  Pencil
+  Pencil,
+  BarChart3,
+  HardHat,
+  Folder,
+  TrendingUp
 } from 'lucide-react'
 import { Button } from '../ui/button'
 
@@ -29,6 +33,10 @@ const navigationItems = [
   { id: 'boq', label: 'BOQ', icon: Calculator },
   { id: 'drawings', label: 'Drawings', icon: FileText },
   { id: 'drawing', label: 'כלי ציור', icon: Pencil },
+  { id: 'gantt', label: 'לוח זמנים', icon: BarChart3 },
+  { id: 'resources', label: 'משאבים', icon: HardHat },
+  { id: 'documents', label: 'מסמכים', icon: Folder },
+  { id: 'reports', label: 'דוחות', icon: TrendingUp },
   { id: 'chat', label: 'Chat', icon: MessageSquare },
   { id: 'users', label: 'Users', icon: Users },
 ]

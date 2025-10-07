@@ -1,8 +1,11 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import ErrorBoundary from '../components/ErrorBoundary'
+import { ThemeProvider } from '../components/ui/ThemeProvider'
+import { ToastProvider } from '../components/ui/Toast'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -24,9 +27,11 @@ export const metadata: Metadata = {
   },
 }
 
-export const viewport = {
+export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 }
 
 export default function RootLayout({
@@ -43,8 +48,14 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//images.unsplash.com" />
       </head>
       <body className={inter.className}>
-        {children}
-        <ErrorToaster />
+        <ThemeProvider defaultTheme="system" storageKey="probuilder-theme">
+          <ToastProvider>
+            <ErrorBoundary>
+              {children}
+              <ErrorToaster />
+            </ErrorBoundary>
+          </ToastProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

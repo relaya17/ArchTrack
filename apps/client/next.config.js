@@ -1,12 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  // Remove static export for full-stack app
+  // output: 'export',
   trailingSlash: true,
-  distDir: 'out',
+  // distDir: 'out',
   images: {
     unoptimized: true,
   },
   assetPrefix: '/',
+  experimental: {
+    serverComponentsExternalPackages: ['mongoose']
+  }
 };
 
 module.exports = nextConfig;
