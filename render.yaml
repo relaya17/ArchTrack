@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: archtrack
+    runtime: node
+    plan: starter
+    buildCommand: |
+      npm install --prefix apps/server
+      npm install --prefix apps/client
+      npm run build --prefix apps/server
+      npm run build --prefix apps/client
+    startCommand: |
+      npm run start --prefix apps/server
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      # Set the following in Render Dashboard → Environment
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGO_URI
+        sync: false
+      - key: MONGO_DB_NAME
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRES_IN
+        value: 24h
+      - key: CLIENT_URL
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
+    healthCheckPath: /api/health
+    autoDeploy: true
+    branch: main

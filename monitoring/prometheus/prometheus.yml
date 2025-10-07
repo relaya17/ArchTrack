@@ -1,0 +1,63 @@
+# Prometheus Configuration
+# Construction Master App - Metrics Collection
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  - "rules/*.yml"
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - alertmanager:9093
+
+scrape_configs:
+  # ProBuilder Server
+  - job_name: "probuilder-server"
+    static_configs:
+      - targets: ["server:3016"]
+    metrics_path: "/api/health/metrics"
+    scrape_interval: 15s
+    scrape_timeout: 10s
+
+  # ProBuilder Client (if metrics are exposed)
+  - job_name: "probuilder-client"
+    static_configs:
+      - targets: ["client:3227"]
+    metrics_path: "/api/metrics"
+    scrape_interval: 30s
+    scrape_timeout: 10s
+
+  # Node Exporter (system metrics)
+  - job_name: "node-exporter"
+    static_configs:
+      - targets: ["node-exporter:9100"]
+    scrape_interval: 15s
+
+  # MongoDB Exporter
+  - job_name: "mongodb-exporter"
+    static_configs:
+      - targets: ["mongodb-exporter:9216"]
+    scrape_interval: 30s
+
+  # Redis Exporter
+  - job_name: "redis-exporter"
+    static_configs:
+      - targets: ["redis-exporter:9121"]
+    scrape_interval: 30s
+
+  # Nginx Exporter
+  - job_name: "nginx-exporter"
+    static_configs:
+      - targets: ["nginx-exporter:9113"]
+    scrape_interval: 30s
+
+  # Prometheus itself
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+    scrape_interval: 15s
+

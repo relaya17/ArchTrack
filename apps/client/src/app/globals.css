@@ -1,0 +1,333 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+@layer components {
+  .toast-container {
+    @apply fixed bottom-4 left-4 z-[9999] flex flex-col gap-2 pointer-events-none;
+  }
+  .toast {
+    @apply pointer-events-auto bg-red-600/95 text-white px-3 py-2 rounded-lg shadow-lg max-w-[420px] text-sm flex items-center gap-2 fade-in;
+  }
+  .toast-close {
+    @apply ms-auto bg-transparent text-white hover:text-white/80 border-0 cursor-pointer text-base leading-none;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* סגנונות מותאמים למערכת הבנייה */
+.construction-grid {
+  @apply border border-gray-300;
+}
+
+.construction-cell {
+  @apply border-r border-b border-gray-200 p-1 min-h-[32px] focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.construction-header {
+  @apply bg-gray-50 font-semibold text-gray-700;
+}
+
+.boq-item {
+  @apply border-b border-gray-200 hover:bg-gray-50;
+}
+
+.formula-bar {
+  @apply border border-gray-300 rounded px-3 py-2 font-mono text-sm;
+}
+
+/* אנימציות */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* סגנונות לטבלאות */
+.ag-theme-alpine {
+  --ag-header-background-color: #f8fafc;
+  --ag-header-foreground-color: #374151;
+  --ag-border-color: #e5e7eb;
+  --ag-row-hover-color: #f3f4f6;
+}
+
+/* נגישות - הגדרות בסיסיות */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Focus styles */
+.focus-visible:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* High contrast mode */
+[data-high-contrast="true"] {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  --border: 0 0% 50%;
+  --input: 0 0% 20%;
+  --ring: 0 0% 100%;
+}
+
+[data-high-contrast="true"] * {
+  color-scheme: dark;
+}
+
+/* Reduced motion */
+[data-reduced-motion="true"] *,
+[data-reduced-motion="true"] *::before,
+[data-reduced-motion="true"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Font size adjustments */
+[data-font-size="small"] {
+  font-size: 0.875rem;
+}
+
+[data-font-size="medium"] {
+  font-size: 1rem;
+}
+
+[data-font-size="large"] {
+  font-size: 1.125rem;
+}
+
+/* Screen reader mode */
+[data-screen-reader="true"] .sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Skip links */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 1000;
+  border-radius: 4px;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Keyboard navigation */
+.keyboard-navigation button:focus,
+.keyboard-navigation input:focus,
+.keyboard-navigation select:focus,
+.keyboard-navigation textarea:focus,
+.keyboard-navigation a:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* High contrast focus */
+[data-high-contrast="true"] .keyboard-navigation button:focus,
+[data-high-contrast="true"] .keyboard-navigation input:focus,
+[data-high-contrast="true"] .keyboard-navigation select:focus,
+[data-high-contrast="true"] .keyboard-navigation textarea:focus,
+[data-high-contrast="true"] .keyboard-navigation a:focus {
+  outline: 3px solid #fff;
+  outline-offset: 1px;
+}
+
+/* Responsive Design Enhancements */
+@media (max-width: 768px) {
+  .responsive-hide-mobile {
+    display: none !important;
+  }
+  
+  .responsive-show-mobile {
+    display: block !important;
+  }
+  
+  .responsive-text-mobile {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  
+  .responsive-padding-mobile {
+    padding: 1rem;
+  }
+  
+  .responsive-margin-mobile {
+    margin: 0.5rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .responsive-hide-tablet {
+    display: none !important;
+  }
+  
+  .responsive-show-tablet {
+    display: block !important;
+  }
+  
+  .responsive-text-tablet {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  
+  .responsive-padding-tablet {
+    padding: 1.5rem;
+  }
+  
+  .responsive-margin-tablet {
+    margin: 1rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .responsive-hide-desktop {
+    display: none !important;
+  }
+  
+  .responsive-show-desktop {
+    display: block !important;
+  }
+  
+  .responsive-text-desktop {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+  
+  .responsive-padding-desktop {
+    padding: 2rem;
+  }
+  
+  .responsive-margin-desktop {
+    margin: 1.5rem;
+  }
+}
+
+/* Touch-friendly interactions */
+@media (hover: none) and (pointer: coarse) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .touch-spacing {
+    margin: 0.5rem;
+  }
+  
+  .touch-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .print-hide {
+    display: none !important;
+  }
+  
+  .print-show {
+    display: block !important;
+  }
+  
+  .print-text {
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+  
+  .print-page-break {
+    page-break-before: always;
+  }
+}

@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+
+# Production builds
+.next/
+out/
+build/
+dist/
+
+# Environment files
+.env*
+
+# Logs
+*.log
+
+# Cache
+.cache/
+.parcel-cache/
+
+# Coverage
+coverage/
+
+# TypeScript
+*.tsbuildinfo
+
+# Package files
+*.tgz
+*.tar.gz
+
+# Editor files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Config files
+*.config.js
+*.config.ts
+
+
+
+
