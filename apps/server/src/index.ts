@@ -191,11 +191,11 @@ async function startServer() {
         // Connect notification service to socket
         notificationService.setSocketService(socketService)
 
-        // Start notification jobs
-        notificationJobs.startAllJobs()
-
-        // Start backup jobs
-        backupJobs.startAllJobs()
+        // Start notification jobs (only in development)
+        if (process.env.NODE_ENV !== 'production') {
+            notificationJobs.startAllJobs()
+            backupJobs.startAllJobs()
+        }
 
         // הפעלת השרת
         server.listen(PORT, () => {
