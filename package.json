@@ -33,7 +33,7 @@
     "ts-node": "^10.9.1",
     "typescript": "5.3.3",
     "husky": "^8.0.3",
-    "lint-staged": "^15.2.0"
+    "lint-staged": "^16.2.6"
   },
   "engines": {
     "node": ">=18.0.0"
