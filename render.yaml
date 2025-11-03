@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: archtrack
+    runtime: node
+    plan: starter
+    buildCommand: |
+      corepack enable
+      corepack prepare pnpm@latest --activate
+      pnpm install --no-frozen-lockfile --prefix apps/server
+      pnpm install --no-frozen-lockfile --prefix apps/client
+      pnpm run build --prefix apps/client
+    startCommand: |
+      cd apps/server && pnpm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      # The following should be set in Render Dashboard (no values committed):
+      - key: MONGODB_URI
+      - key: MONGO_DB_NAME
+      - key: JWT_SECRET
+      - key: JWT_EXPIRES_IN
+        value: 24h
+      - key: CLIENT_URL
+      - key: CORS_ORIGIN
+    healthCheckPath: /api/health
+    autoDeploy: true
+    branch: main

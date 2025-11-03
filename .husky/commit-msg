@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Commit message hook for ArchTrack project
+echo "📝 Validating commit message..."
+
+# Get the commit message
+commit_msg=$(cat "$1")
+
+# Check if commit message follows conventional commits format
+if ! echo "$commit_msg" | grep -qE "^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert)(\(.+\))?: .+"; then
+  echo "❌ Commit message does not follow conventional commits format"
+  echo "Expected format: type(scope): description"
+  echo "Examples:"
+  echo "  feat: add new feature"
+  echo "  fix: resolve bug in authentication"
+  echo "  docs: update README"
+  echo "  style: format code with prettier"
+  echo "  refactor: improve code structure"
+  echo "  test: add unit tests"
+  echo "  chore: update dependencies"
+  echo ""
+  echo "Your commit message: $commit_msg"
+  exit 1
+fi
+
+# Check for Hebrew characters (optional)
+if echo "$commit_msg" | grep -q "[א-ת]"; then
+  echo "⚠️  Warning: Commit message contains Hebrew characters"
+  echo "Consider using English for better compatibility"
+fi
+
+# Check message length
+if [ ${#commit_msg} -gt 100 ]; then
+  echo "⚠️  Warning: Commit message is longer than 100 characters"
+  echo "Consider shortening the message"
+fi
+
+echo "✅ Commit message validation passed!"

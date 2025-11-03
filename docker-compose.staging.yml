@@ -1,0 +1,126 @@
+version: "3.8"
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:7.0
+    container_name: probuilder-mongodb-staging
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: staging-password-123
+      MONGO_INITDB_DATABASE: probuilder-staging
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongodb_staging_data:/data/db
+      - ./scripts/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - probuilder-staging-network
+
+  # Redis Cache
+  redis:
+    image: redis:7.2-alpine
+    container_name: probuilder-redis-staging
+    restart: unless-stopped
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis_staging_data:/data
+    networks:
+      - probuilder-staging-network
+
+  # Server Application
+  server:
+    build:
+      context: .
+      dockerfile: apps/server/Dockerfile
+    container_name: probuilder-server-staging
+    restart: unless-stopped
+    environment:
+      NODE_ENV: staging
+      PORT: 3016
+      MONGODB_URI: mongodb://admin:staging-password-123@mongodb:27017/probuilder-staging?authSource=admin
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: staging-secret-key-change-in-production
+    ports:
+      - "3017:3016"
+    depends_on:
+      - mongodb
+      - redis
+    volumes:
+      - server_staging_uploads:/app/uploads
+    networks:
+      - probuilder-staging-network
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "require('http').get('http://localhost:3016/api/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Client Application
+  client:
+    build:
+      context: .
+      dockerfile: apps/client/Dockerfile
+    container_name: probuilder-client-staging
+    restart: unless-stopped
+    environment:
+      NODE_ENV: staging
+      PORT: 3227
+      NEXT_PUBLIC_API_URL: http://localhost:3017
+    ports:
+      - "3228:3227"
+    depends_on:
+      - server
+    networks:
+      - probuilder-staging-network
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "http://localhost:3227",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: probuilder-nginx-staging
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+      - "8443:443"
+    volumes:
+      - ./nginx.staging.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - client
+      - server
+    networks:
+      - probuilder-staging-network
+
+volumes:
+  mongodb_staging_data:
+    driver: local
+  redis_staging_data:
+    driver: local
+  server_staging_uploads:
+    driver: local
+
+networks:
+  probuilder-staging-network:
+    driver: bridge
+

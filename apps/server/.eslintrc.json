@@ -1,0 +1,9 @@
+{
+  "extends": ["../../.eslintrc.json"],
+  "rules": {
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/prefer-optional-chain": "off",
+    "@typescript-eslint/ban-ts-comment": "warn",
+    "@typescript-eslint/no-non-null-assertion": "off"
+  }
+}

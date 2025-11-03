@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: probuilder-config
+  namespace: probuilder
+data:
+  NODE_ENV: "production"
+  PORT: "3016"
+  CLIENT_PORT: "3227"
+  LOG_LEVEL: "info"
+  ENABLE_COMPRESSION: "true"
+  ENABLE_CACHING: "true"
+  CACHE_TTL: "3600"
+  MAX_FILE_SIZE: "100MB"
+  ALLOWED_FILE_TYPES: "image/jpeg,image/png,image/gif,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+  BACKUP_SCHEDULE: "0 2 * * *"
+  BACKUP_RETENTION_DAYS: "90"
+  RATE_LIMIT_WINDOW_MS: "900000"
+  RATE_LIMIT_MAX_REQUESTS: "100"
+  RATE_LIMIT_AUTH_MAX_REQUESTS: "5"
+  BCRYPT_ROUNDS: "12"
+  JWT_EXPIRES_IN: "15m"
+  JWT_REFRESH_EXPIRES_IN: "7d"
+  AI_MODEL: "gpt-4"
+  AI_MAX_TOKENS: "2000"
+

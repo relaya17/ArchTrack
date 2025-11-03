@@ -1,0 +1,11 @@
+[build]
+  command = "pnpm install --prefix apps/client && pnpm run build --prefix apps/client"
+  publish = "apps/client/out"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
